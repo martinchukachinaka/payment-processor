@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  jpa:
+    hibernate.ddl-auto: update
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: true
+  datasource:
+    url: ${DB_SERVER:jdbc:postgresql://localhost:15432/ngnpayment}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:postgres}
+    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  cloud:
+    stream:
+      bindings:
+        payment-out-0:
+          destination: ${app.currency}-PAYMENTS-REQUESTS
+          content-type: application/json
+      source: payment
+      kafka:
+        binder:
+          brokers: ${app.broker}
+          zkNodes: ${app.zoo}
+          defaultBrokerPort: ${app.brokerPort}
+app:
+  currency: ${CURRENCY:NGN}
+  broker: ${BROKER:localhost}
+  zoo: ${ZOO:localhost}
+  brokerPort: ${BROKER_PORT:9092}
