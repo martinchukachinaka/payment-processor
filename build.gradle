@@ -30,11 +30,17 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
     implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
     implementation 'org.springframework.kafka:spring-kafka'
+
+    implementation 'org.springdoc:springdoc-openapi-ui:1.5.7'
+    implementation 'org.springdoc:springdoc-openapi-data-rest:1.5.7'
+
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    testRuntimeOnly 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
