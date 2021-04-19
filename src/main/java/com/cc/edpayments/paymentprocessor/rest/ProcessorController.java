@@ -25,7 +25,7 @@ public class ProcessorController {
     @PostMapping
     public void processPayment(@RequestBody List<Payment> logs) {
         paymentService.savePayment(logs);
-        paymentService.publishToQueue(logs);
+//        paymentService.publishToQueue(logs);
     }
 
 
